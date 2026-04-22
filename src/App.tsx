@@ -15,7 +15,8 @@ function App() {
   );
   const [searchTerm, setSearchTerm] = useState("");
   const [copied, setCopied] = useState(false);
-  const [minified, setMinified] = useState(false);
+  const [copiedMinified, setCopiedMinified] = useState(false);
+  const [copiedBoilerplate, setCopiedBoilerplate] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(
     new Set(Object.keys(tailwindMap)),
   );
@@ -56,7 +57,68 @@ function App() {
     return nextMap;
   }, [searchTerm]);
 
-  const cssCode = useCssGenerator(selectedClasses, classLookup, minified);
+  const cssCode = useCssGenerator(selectedClasses, classLookup, false);
+  const minifiedCssCode = useCssGenerator(selectedClasses, classLookup, true);
+
+  const boilerplateCode = `*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===== Base Reset ===== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+  font-family: system-ui, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Remove default margins for common elements */
+h1, h2, h3, h4, h5, h6,
+p {
+  margin: 0;
+}
+
+/* Lists */
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Buttons & inputs */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  border: none;
+  background: none;
+}`;
 
   const selectedCount = selectedClasses.size;
 
@@ -122,6 +184,26 @@ function App() {
     }
   };
 
+  const copyMinifiedCss = async () => {
+    try {
+      await navigator.clipboard.writeText(minifiedCssCode);
+      setCopiedMinified(true);
+      window.setTimeout(() => setCopiedMinified(false), 1300);
+    } catch {
+      setCopiedMinified(false);
+    }
+  };
+
+  const copyBoilerplateCode = async () => {
+    try {
+      await navigator.clipboard.writeText(boilerplateCode);
+      setCopiedBoilerplate(true);
+      window.setTimeout(() => setCopiedBoilerplate(false), 1300);
+    } catch {
+      setCopiedBoilerplate(false);
+    }
+  };
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_8%,rgba(56,189,248,0.18),transparent_48%),radial-gradient(circle_at_88%_75%,rgba(16,185,129,0.13),transparent_46%),linear-gradient(120deg,rgba(2,6,23,0.96),rgba(15,23,42,0.92))]" />
@@ -129,11 +211,13 @@ function App() {
       <div className="relative mx-auto flex w-full max-w-screen-2xl flex-col px-3 pb-4 pt-3 md:px-5 md:pb-6 md:pt-5">
         <Header
           selectedCount={selectedCount}
-          minified={minified}
           copied={copied}
+          copiedMinified={copiedMinified}
+          copiedBoilerplate={copiedBoilerplate}
           onCopy={copyCss}
+          onCopyMinified={copyMinifiedCss}
+          onCopyBoilerplate={copyBoilerplateCode}
           onClearAll={clearAll}
-          onToggleMinified={() => setMinified((prev) => !prev)}
         />
 
         <section className="mt-4 flex flex-1 flex-col gap-4 md:flex-row">
