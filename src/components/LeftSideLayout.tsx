@@ -48,7 +48,7 @@ function LeftSideLayout({
         />
       </label>
 
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid auto-rows-min grid-cols-1 items-start gap-3 md:grid-cols-2 lg:grid-cols-3">
         {Object.entries(filteredMap).map(([group, items]) => (
           <AccordionGroup
             key={group}

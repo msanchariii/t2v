@@ -28,7 +28,7 @@ function AccordionGroup({
   ).length;
 
   return (
-    <section className="rounded-xl border border-slate-300 bg-slate-50/70">
+    <section className="self-start rounded-xl border border-slate-300 bg-white shadow-sm">
       <button
         type="button"
         onClick={onToggleAccordion}
@@ -38,16 +38,20 @@ function AccordionGroup({
           {title}
         </h3>
 
-        {expanded ? (
-          <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
+          {expanded ? (
             <p className="text-xs text-slate-600">
               {selectedInGroup} selected / {items.length} classes
             </p>
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 bg-white text-cyan-700 transition-transform rotate-180">
-              <ChevronDown />
-            </span>
-          </div>
-        ) : null}
+          ) : null}
+          <span
+            className={`inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 bg-white text-cyan-700 transition-transform ${
+              expanded ? "rotate-180" : "rotate-0"
+            }`}
+          >
+            <ChevronDown />
+          </span>
+        </div>
       </button>
 
       <div
