@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# 🎨 Tailwind to Vanilla CSS (T2V) Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**[Click Here to Visit T2V](https://msanchariii.github.io/t2v/)**
 
-Currently, two official plugins are available:
+A lightweight, frontend-only tool that lets you pick Tailwind utility classes and instantly generate the equivalent CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Designed with an IDE-like interface, this app is perfect for developers who want to:
 
-## React Compiler
+- Extract only the CSS they need
+- Understand how Tailwind utilities map to raw CSS
+- Quickly prototype styles without setting up Tailwind
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🧩 Accordion-based class groups (Font, Layout, Spacing, etc.)
+- ✅ Checkbox selection for Tailwind utilities
+- ⚡ Live CSS generation
+- 🖥️ IDE-style output panel (dark theme, monospace)
+- 📋 One-click copy to clipboard
+- 🧠 Data-driven architecture using `data.ts`
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📁 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+/src
+  /components
+    Sidebar.tsx
+    Accordion.tsx
+    ClassItem.tsx
+    OutputPanel.tsx
+    Header.tsx
+  /data
+    data.ts
+  App.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧠 How It Works
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Tailwind utility classes are defined in `data.ts`
+2. UI dynamically renders groups and checkboxes
+3. Selected classes are stored in state (using a Set)
+4. CSS is generated in real-time
+5. Output is displayed in a code editor-style panel
+
+---
+
+## 🛠️ Tech Stack
+
+- React (or Angular)
+- Tailwind CSS (for styling the app itself)
+- TypeScript
+
+---
+
+## 📦 Installation
+
+```bash
+# clone the repo
+git clone https://github.com/your-username/tailwind-css-generator.git
+
+# go into the project
+cd tailwind-css-generator
+
+# install dependencies
+npm install
+
+# run the app
+npm run dev
 ```
+
+---
+
+## ✨ Roadmap
+
+Planned improvements:
+
+- 🔍 Search functionality
+- 📦 Select all per category
+- 🧹 Clear all selections
+- 📉 Minified CSS toggle
+- 🎯 Syntax highlighting (Prism / Sh
