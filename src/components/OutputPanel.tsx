@@ -6,7 +6,7 @@ function OutputPanel({ cssCode }: OutputPanelProps) {
   const lines = cssCode.split("\n");
 
   return (
-    <section className="flex grow xl:max-w-116 text-wrap h-full overflow-hidden min-h-96 flex-col rounded-2xl border border-slate-300 bg-white shadow-[0_16px_40px_rgba(15,23,42,0.12)]">
+    <section className="h-full min-h-96 w-full shrink-0 overflow-hidden rounded-2xl border border-slate-300 bg-white text-wrap shadow-[0_16px_40px_rgba(15,23,42,0.12)] md:w-[360px] lg:w-[420px] xl:w-[463px]">
       <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-2">
         <span className="h-2.5 w-2.5 rounded-full bg-rose-400"></span>
         <span className="h-2.5 w-2.5 rounded-full bg-amber-300"></span>

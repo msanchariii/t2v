@@ -136,18 +136,20 @@ function App() {
           onToggleMinified={() => setMinified((prev) => !prev)}
         />
 
-        <section className="mt-4 flex flex-1 gap-4">
-          <LeftSideLayout
-            filteredMap={filteredMap}
-            searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}
-            selectedClasses={selectedClasses}
-            expandedGroups={expandedGroups}
-            onToggleAccordion={toggleAccordion}
-            onToggleClass={toggleClass}
-            onSelectAllInGroup={selectAllInGroup}
-            onClearGroup={clearGroup}
-          />
+        <section className="mt-4 flex flex-1 flex-col gap-4 md:flex-row">
+          <div className="min-w-0 flex-1">
+            <LeftSideLayout
+              filteredMap={filteredMap}
+              searchTerm={searchTerm}
+              onSearchChange={setSearchTerm}
+              selectedClasses={selectedClasses}
+              expandedGroups={expandedGroups}
+              onToggleAccordion={toggleAccordion}
+              onToggleClass={toggleClass}
+              onSelectAllInGroup={selectAllInGroup}
+              onClearGroup={clearGroup}
+            />
+          </div>
 
           <OutputPanel cssCode={cssCode} />
         </section>
